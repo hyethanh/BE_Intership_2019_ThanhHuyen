@@ -1,4 +1,3 @@
 # Java exercise
 
-- Build status <Code từ CircleCI>
-- Test coverage <Code từ CodeCov>
+- Build status [![CircleCI](https://circleci.com/gh/thanhhuyen1208/BE_Intership_2019_ThanhHuyen.svg?style=svg)](https://circleci.com/gh/thanhhuyen1208/BE_Intership_2019_ThanhHuyen)
