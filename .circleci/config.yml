@@ -1,4 +1,4 @@
-# Java Gradle CircleCI 2.0 configuration file
+# Java Maven CircleCI 2.0 configuration file
 #
 # Check https://circleci.com/docs/2.0/language-java/ for more details
 #
@@ -8,6 +8,11 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/openjdk:8-jdk
+      - image: circleci/postgres:9.4
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/postgres:9.4
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -18,37 +23,33 @@ jobs:
 
     environment:
       # Customize the JVM maximum heap limit
-      JVM_OPTS: -Xmx3200m
-      TERM: dumb
+      MAVEN_OPTS: -Xmx3200m
+      POSTGRES_DB: circle_test
 
     steps:
       - checkout
-
       # Download and cache dependencies
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "build.gradle" }}
+            - v1-dependencies-{{ checksum "pom.xml" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: gradle dependencies
+      - run: mvn dependency:go-offline
+      - run: sudo apt install postgresql-client
+      - run:
+          name: Wait for Postgres to start
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run:
+          name: Preapare db
+          command: psql -h 127.0.0.1 -U postgres -c "CREATE USER username WITH PASSWORD 'password'; GRANT ALL PRIVILEGES ON DATABASE circle_test TO username;"
 
       - save_cache:
           paths:
-            - ~/.gradle
-          key: v1-dependencies-{{ checksum "build.gradle" }}
+            - ~/.m2
+          key: v1-dependencies-{{ checksum "pom.xml" }}
 
       # run tests!
-      - run:
-          name: Running test
-          command: gradle test
+      - run: mvn integration-test -Dspring.profiles.active=circleci
 
-      # Upload test coverage
-      - run:
-          name: Generate test coverage
-          command: gradle jacocoTestReport
 
-      # Upload test coverage
-      - run:
-          name: Upload test coverage
-          command: bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
