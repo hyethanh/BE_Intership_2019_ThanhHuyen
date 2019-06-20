@@ -36,6 +36,7 @@ jobs:
             - v1-dependencies-
 
       - run: mvn dependency:go-offline
+      - run: sudo apt-get update
       - run: sudo apt install postgresql-client
       - run:
           name: Wait for Postgres to start
