@@ -1,5 +1,6 @@
 package com.example.demo.models;
 
+        import com.example.demo.models.dao.Book;
         import org.junit.Test;
         import org.junit.runner.RunWith;
         import org.springframework.beans.factory.annotation.Autowired;
@@ -27,24 +28,15 @@ public class BookTest {
     @Test
     public void test_book_OK(){
         Book book = new Book();
-        book.setName("Hello");
+        book.setName("test_book_ok");
         book.setYear(2010);
         assertTrue(validator.validate(book).isEmpty());
     }
 
     @Test
-    public void test_book_1990(){
-        Book book = new Book();
-        book.setName("Hello");
-        book.setYear(1989);
-        assertFalse(validator.validate(book).isEmpty());
-    }
-
-
-    @Test
     public void test_book_above_2100(){
         Book book = new Book();
-        book.setName("Hello");
+        book.setName("Above_2100");
         book.setYear(2101);
         assertFalse(validator.validate(book).isEmpty());
     }

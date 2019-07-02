@@ -10,8 +10,8 @@ import java.util.Set;
 @Service
 public interface UserReposity extends JpaRepository<User,Integer> {
 
-   // @Query(value="select * from user where concat(' ', first_name,' ', last_name, ' ') LIKE '%?1%'", nativeQuery = true)
-   // User findByName(String name);
+    @Query(value="select * from user where concat(' ', first_name,' ', last_name, ' ') LIKE '%?1%'", nativeQuery = true)
+    User findByName(String name);
 
    User findByUserName(String userName);
 

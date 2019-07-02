@@ -39,17 +39,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     @Bean
-    public BCryptPasswordEncoder encoder(){
+    public BCryptPasswordEncoder encoder() {
 
         return new BCryptPasswordEncoder();
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http .csrf().disable().
+        http.csrf().disable().
                 authorizeRequests()
                 .antMatchers("/api/auth").permitAll()
-                .antMatchers("/api/books","/api/books/*").permitAll()
+                .antMatchers("/api/books", "/api/books/*").permitAll()
                 .anyRequest()
                 .authenticated();
 

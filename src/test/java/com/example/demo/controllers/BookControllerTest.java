@@ -1,9 +1,7 @@
 package com.example.demo.controllers;
 
 import com.example.demo.configurations.TokenProvider;
-import com.example.demo.dao.Login;
-import com.example.demo.models.Book;
-import com.example.demo.models.Category;
+import com.example.demo.models.dao.Book;
 import com.example.demo.repositories.BookRepository;
 import com.google.gson.Gson;
 import org.hamcrest.Matchers;
@@ -19,14 +17,12 @@ import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.ArrayList;
 import java.util.Optional;
 
 import static org.junit.Assert.*;

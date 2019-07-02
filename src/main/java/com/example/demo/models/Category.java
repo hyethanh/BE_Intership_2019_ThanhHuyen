@@ -1,6 +1,8 @@
 package com.example.demo.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import javax.persistence.Entity;
@@ -11,6 +13,8 @@ import javax.validation.constraints.NotBlank;
 
 @Data
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Category {
 
     @Id
@@ -21,5 +25,6 @@ public class Category {
     @NonNull
     @NotBlank
     private String nameCate;
+
 
 }

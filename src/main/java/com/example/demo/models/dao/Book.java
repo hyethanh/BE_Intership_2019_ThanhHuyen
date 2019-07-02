@@ -1,5 +1,6 @@
-package com.example.demo.models;
+package com.example.demo.models.dao;
 
+import com.example.demo.models.Category;
 import lombok.*;
 import lombok.experimental.Accessors;
 
