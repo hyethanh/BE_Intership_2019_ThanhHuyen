@@ -11,9 +11,9 @@ create table Tag(
 );
 
 create table Post_Tag(
-	postid int,
+    postid int,
     tagid int,
-	foreign key (postid) references Post(id),
+    foreign key (postid) references Post(id),
     foreign key (tagid) references Tag(id)
 );
 
@@ -23,9 +23,9 @@ create table Category(
 );
 
 create table Post_Cate(
-	postid int,
+    postid int,
     cateid int,
-	foreign key (postid) references Post(id),
+    foreign key (postid) references Post(id),
     foreign key (cateid) references Cate(id)
 );
 
