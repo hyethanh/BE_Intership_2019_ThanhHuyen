@@ -1,8 +1,8 @@
 
-create table Post(
-    id int primary key auto_increment,
-    title varchar(255),
-    comment varchar(255)
+CREATE TABLE Post (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(255),
+    comment VARCHAR(255)
 );
 
 create table Tag(
