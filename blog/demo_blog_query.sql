@@ -1,3 +1,5 @@
+create database demo;
+use demo;
 
 create table User(
     id int primary key auto_increment,
@@ -19,13 +21,20 @@ create table User_Role(
     foreign key (role_id) references Role(role_id)
 );
 
+create table Category(
+    id int primary key auto_increment,
+    name varchar(255)
+);
+
 create table Post(
     id int primary key auto_increment,
     title varchar(255),
     content varchar(255),
     post_date Date,
     user_id int,
-    constraint fk_post_user foreign key (user_id) references User(id)
+    cate_id int,
+    constraint fk_post_user foreign key (user_id) references User(id),
+    constraint fk_post_cate foreign key (cate_id) references Category(id)
 );
 
 create table Tag(
@@ -38,18 +47,6 @@ create table Post_Tag(
     tag_id int,
 	foreign key (post_id) references Post(id),
     foreign key (tag_id) references Tag(id)
-);
-
-create table Category(
-    id int primary key auto_increment,
-    cate varchar(255)
-);
-
-create table Post_Cate(
-	post_id int,
-    cate_id int,
-	foreign key (post_id) references Post(id),
-    foreign key (cate_id) references Category(id)
 );
 
 create table Comment(
