@@ -1,5 +1,4 @@
 
-
 create table User(
     id int primary key auto_increment,
     username varchar(255),
