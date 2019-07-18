@@ -7,6 +7,8 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.Set;
 
 @Entity
 @Data
@@ -17,21 +19,29 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Integer id;
 
     @Column(nullable = false)
     @NonNull
     private String username;
 
-    @JsonAlias("first_name")
+    @JsonAlias("full_name")
     @Column
     @NonNull
-    private String firstName;
+    private String fullName;
 
-    @JsonAlias("last_name")
-    private String lastName;
 
     @Column(nullable = false)
     @NonNull
     private String password;
+
+    @Column
+    @NonNull
+    private String email;
+
+    @ManyToMany
+    @JoinTable(name = "User_Role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
     }

@@ -1,4 +1,8 @@
 package com.example.blog.repositories;
 
-public class CommentRepository {
+import com.example.blog.models.Comment;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CommentRepository extends JpaRepository<Comment,Integer> {
+
 }

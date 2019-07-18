@@ -1,6 +1,5 @@
 package com.example.blog.configurations;
 
-import com.example.demo.configurations.TokenProvider;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -32,26 +31,26 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
         String header = req.getHeader(HEADER_STRING);
-        String userName = null;
+        String username = null;
         String authToken = null;
 
         if (header != null && header.startsWith(TOKEN_PREFIX)) {
             authToken = header.replace(TOKEN_PREFIX,"");
             try {
-                userName = jwtTokenUtil.getUsernameFromToken(authToken);
+                username = jwtTokenUtil.getUsernameFromToken(authToken);
             } catch (IllegalArgumentException e) {
-                logger.error("an error occured during getting username from token", e);
+                logger.error("An error occured during getting username from token", e);
             } catch (ExpiredJwtException e) {
-                logger.warn("the token is expired and not valid anymore", e);
+                logger.warn("The token is expired and not valid anymore", e);
             }
 
         } else {
-            logger.warn("couldn't find bearer string, will ignore the header");
+            logger.warn("Couldn't find bearer string, will ignore the header");
         }
 
-        if (userName != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
-            UserDetails userDetails = userDetailsService.loadUserByUsername(userName);
+            UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
             if(userDetails != null){
 

@@ -1,6 +1,5 @@
-package com.example.demo.configurations;
+package com.example.blog.configurations;
 
-import com.example.blog.configurations.JwtAuthentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,9 +32,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public JwtAuthentication authenticationTokenFilterBean() {
+    public JwtAuthenticationFilter authenticationTokenFilterBean() {
 
-        return new JwtAuthentication();
+        return new JwtAuthenticationFilter();
     }
 
 
@@ -49,8 +48,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().
                 authorizeRequests()
-                .antMatchers("/auth").permitAll()
-                .antMatchers("/posts").permitAll()
+                .antMatchers("/api/auth","/api/authen").permitAll()
+                .antMatchers("/login/*", "/login/**","/css/**","/img/**","/js/**").permitAll()
                 .anyRequest()
                 .authenticated();
 

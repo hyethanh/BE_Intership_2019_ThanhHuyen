@@ -79,7 +79,7 @@ h1, h2, h3, h4, h5, h6 {
 
 p {
   margin-top: 0;
-  margin-bottom: 1rem; }
+  margin-bottom: 0; }
 
 abbr[title],
 abbr[data-original-title] {
@@ -7269,11 +7269,11 @@ a.text-dark:hover, a.text-dark:focus {
 
 body {
   font-family: "Work Sans", Arial, sans-serif;
-  background: #fff;
+  background: #000;
   font-size: 18px;
   line-height: 1.8;
   font-weight: 300;
-  color: #737373; }
+  color: #ccc7c7; }
   body.menu-show {
     overflow: hidden;
     position: fixed;
@@ -7292,7 +7292,7 @@ a {
 h1, h2, h3, h4, h5,
 .h1, .h2, .h3, .h4, .h5 {
   line-height: 1.5;
-  color: #000;
+  color: #ee76ad;
   font-weight: 300;
   font-family: "Playfair Display", Georgia, serif; }
 
@@ -8235,7 +8235,7 @@ textarea.form-control {
       margin-bottom: 16px;
       font-weight: 400; }
       .blog-entry .text .heading a {
-        color: #000; }
+        color: #ee76ad; }
         .blog-entry .text .heading a:hover, .blog-entry .text .heading a:focus, .blog-entry .text .heading a:active {
           color: #ee76ad; }
     .blog-entry .text .meta-chat {
@@ -8523,9 +8523,11 @@ textarea.form-control {
   margin-bottom: 7px;
   margin-right: 4px;
   border-radius: 4px;
-  color: #000;
+  color: #ee76ad;
   border: 1px solid #ccc;
-  font-size: 11px; }
+  font-size: 13px;
+  font-weight:border}
+
   .tagcloud a:hover {
     border: 1px solid #000; }
 
@@ -8715,3 +8717,4 @@ textarea.form-control {
   100% {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px; } }
+
