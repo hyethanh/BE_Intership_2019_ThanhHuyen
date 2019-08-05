@@ -6,15 +6,13 @@ import com.example.blog.models.User;
 import com.example.blog.repositories.PostReposity;
 import com.example.blog.repositories.UserReposity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
-import java.sql.Date;
 
 @Controller
 @RequestMapping("/login")

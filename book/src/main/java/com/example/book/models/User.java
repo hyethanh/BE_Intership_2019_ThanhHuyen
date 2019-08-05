@@ -1,4 +1,4 @@
-package com.example.blog.models;
+package com.example.book.models;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import lombok.Data;
@@ -13,34 +13,40 @@ import java.util.Set;
 @Data
 @RequiredArgsConstructor
 @NoArgsConstructor
-@Table(name = "users")
+
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private int id;
 
     @Column(nullable = false)
     @NonNull
-    private String username;
-
-    @JsonAlias("full_name")
-    @Column
-    @NonNull
-    private String fullName;
-
+    private String email;
 
     @Column(nullable = false)
     @NonNull
     private String password;
 
+    @JsonAlias("first_name")
+    @Column
+    private String firstName;
+
+    @Column
+    @JsonAlias("last_name")
+    private String lastName;
+
     @Column
     @NonNull
-    private String email;
+    private boolean enabled;
+
+    @Column
+    private String avatar;
 
     @ManyToMany
     @JoinTable(name = "User_Role",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
-    }
+
+}
